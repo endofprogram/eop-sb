@@ -43,21 +43,13 @@ dubbo:
     id: eop-sb-registry
     client: curator
     protocol: zookeeper
-    address: N/A#127.0.0.1:2181
+    address: 127.0.0.1:2181
   protocol:
     id: eop-sb-protocol
     name: dubbo
     port: 20880
   scan:
     base-packages: org.eop.sb.**.dubbo.provider,org.eop.sb.**.dubbo.consumer
-
-#org/springframework/boot/logging/logback/*.xml，在spring-boot-version.jar里面。
-logging:
-  config: classpath:logback/logback-spring.xml
-  #path: tomcat/logs
-  file: ../tomcat/logs/eop-sb.log #path和file指定一个，都指定则file优先级高
-  level:
-    root: INFO
 
 spring:
   datasource:
@@ -121,7 +113,7 @@ spring:
       flush-mode: ON_SAVE
     cleanup:
       cron:
-        expression: ${sessionCleanupCron:0 0/3 * * * ?}
+        expression: ${sessionCleanupCron:0 0/2 * * * ?}
   thymeleaf:
     encoding: UTF-8
     mode: HTML
@@ -138,3 +130,11 @@ spring:
 #    cluster:
 #      nodes: host:port,host:port,host:port
 #      max-redirects: 5
+
+#org/springframework/boot/logging/logback/*.xml，在spring-boot-version.jar里面。
+logging:
+  config: classpath:logback/logback-spring.xml
+  #path: tomcat/logs
+  file: ../tomcat/logs/eop-sb.log #path和file指定一个，都指定则file优先级高
+  level:
+    root: INFO

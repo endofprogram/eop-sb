@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="com.cmos.ha.cos.common.buyer.membercenter.bean"/>
+		<package name="org.eop.sb.example.bean"/>
 	</typeAliases>
 	
 </configuration>

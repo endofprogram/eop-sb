@@ -17,7 +17,7 @@ initialization performed by Boot
 		</rollingPolicy>
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<MaxFileSize>1KB</MaxFileSize>
+			<MaxFileSize>1MB</MaxFileSize>
 		</triggeringPolicy>
 	</appender>
 </included>
