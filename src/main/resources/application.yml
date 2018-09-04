@@ -134,7 +134,7 @@ spring:
 #org/springframework/boot/logging/logback/*.xml，在spring-boot-version.jar里面。
 logging:
   config: classpath:logback/logback-spring.xml
-  #path: tomcat/logs
-  file: ../tomcat/logs/eop-sb.log #path和file指定一个，都指定则file优先级高
+  path: ../tomcat/logs
+  file: eop-sb.log
   level:
     root: INFO
