@@ -43,7 +43,13 @@ public class ExampleController {
 	}
 	
 	@GetMapping(path = "/exception")
-	public int exception() {
-		return 1 / 0;
+	public int exception() throws Exception {
+		throw new Exception();
 	}
+	
+	@GetMapping(path = "/runtimeexception")
+	public String runtimeException() {
+		throw new RuntimeException();
+	}
+	
 }
