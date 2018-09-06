@@ -2,6 +2,7 @@ package org.eop.sb.example.controller;
 
 import java.util.Date;
 
+import org.eop.common.idgene.IdGenerator;
 import org.eop.sb.example.bean.Example;
 import org.eop.sb.example.service.IExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ExampleController {
 
 	@Autowired
 	private IExampleService exampleService;
+	
+	@Autowired
+	private IdGenerator idGenerator;
 	
 	@GetMapping(path = "/new")
 	public Example addExample() {
@@ -52,4 +56,8 @@ public class ExampleController {
 		throw new RuntimeException();
 	}
 	
+	@GetMapping(path = "/idgene")
+	public String idgene() {
+		return "id " + idGenerator.nextId();
+	}
 }
