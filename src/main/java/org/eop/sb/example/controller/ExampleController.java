@@ -2,6 +2,7 @@ package org.eop.sb.example.controller;
 
 import java.util.Date;
 
+import org.eop.common.http.invoker.IHttpInvoker;
 import org.eop.common.idgene.IdGenerator;
 import org.eop.sb.example.bean.Example;
 import org.eop.sb.example.service.IExampleService;
@@ -24,6 +25,13 @@ public class ExampleController {
 	
 	@Autowired
 	private IdGenerator idGenerator;
+	@Autowired
+	private IdGenerator antherOne;
+	
+	@Autowired
+	private IHttpInvoker httpcomponentsHttpInvoker;
+	@Autowired
+	private IHttpInvoker okhttp3HttpInvoker;
 	
 	@GetMapping(path = "/new")
 	public Example addExample() {
@@ -58,6 +66,14 @@ public class ExampleController {
 	
 	@GetMapping(path = "/idgene")
 	public String idgene() {
-		return "id " + idGenerator.nextId();
+		return "id " + idGenerator.nextId() + "，" + idGenerator + "<br />"
+				+ "id " + antherOne.nextId() + "，" + antherOne + "<br />";
+	}
+	
+	@GetMapping(path = "/httpinvoker")
+	public String httpinvoker() {
+		return new Date() + "<br />"
+				+ httpcomponentsHttpInvoker + "<br />"
+				+ okhttp3HttpInvoker + "<br />";
 	}
 }

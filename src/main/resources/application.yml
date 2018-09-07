@@ -1,7 +1,26 @@
-id:
-  generator:
-    base-time: 2018-09-06 00:00:00.000
-    node-num: 0
+idgenerator:
+  generators:
+    idGenerator:
+      base-time: 2018-09-06 00:00:00.000
+      node-num: 0
+    antherOne:
+      base-time: 2018-01-01 00:00:00.000
+      node-num: 1
+
+httpinvoker:
+  httpcomponents:
+    httpcomponentsHttpInvoker:
+      connection-request-timeout: 60000
+      connect-timeout: 60000
+      read-timeout: 120000
+      max-conn-per-route: 256
+      max-conn-total: 2560
+      max-idle-time: 1200
+  okhttp3:
+    okhttp3HttpInvoker:
+      connect-timeout: 60000
+      read-timeout: 120000
+      write-timeout: 60000
 
 server:
   display-name: eop-sb
