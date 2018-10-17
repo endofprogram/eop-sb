@@ -1,3 +1,4 @@
+#java -cp druid-1.1.6.jar com.alibaba.druid.filter.config.ConfigTools <password>
 idgenerator:
   generators:
     idGenerator:
@@ -59,31 +60,32 @@ pagehelper:
   auto-runtime-dialect: "false"
   close-conn: "true"
 
-dubbo:
-  application:
-    id: eop-sb
-    name: eop-sb
-  registry:
-    id: eop-sb-registry
-    client: curator
-    protocol: zookeeper
-    address: 127.0.0.1:2181
-  protocol:
-    id: eop-sb-protocol
-    name: dubbo
-    port: 20880
-  scan:
-    base-packages: org.eop.sb.**.dubbo.provider,org.eop.sb.**.dubbo.consumer
+#dubbo:
+#  application:
+#    id: eop-sb
+#    name: eop-sb
+#  registry:
+#    id: eop-sb-registry
+#    client: curator
+#    protocol: zookeeper
+#    address: 127.0.0.1:2181
+#  protocol:
+#    id: eop-sb-protocol
+#    name: dubbo
+#    port: 20880
+#  scan:
+#    base-packages: org.eop.sb.**.dubbo.provider,org.eop.sb.**.dubbo.consumer
 
 spring:
   datasource:
     druid:
-      url: jdbc:mysql://117.159.10.13:3306/hn_cos_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-      username: hn_cos
-      password: Wr4Cd4q82+y2eYfW6qbfB35AckGxLjKDVjPgeC68sj6oyJz/+zkIec9tblHQUFH/uZG9zo7GSab8WB4VtodtvA==
+      #url: jdbc:mysql://117.159.10.13:3306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      url: jdbc:mysql://192.168.0.206:3306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      username: user_mgt
+      password: Wcgw21TmhSeOqG//KtalEpUoSmIF4QtNnit7tHWLM/GYvyPx/KFaFe0B0qkSg6CrNSqzns7Fo1fbEcPItPhiPQ==
       driver-class-name: com.mysql.jdbc.Driver
       filters: config
-      connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKZQfRiqKFqNHsOQNRcjnsPs6T7s79y9RN2g1vFHsNqnZ5zbKeOMeteTCJIY9d8or/LuSRlUkJFxp8FKAVTOkWECAwEAAQ==
+      connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIK6NuBk1kXtvq93jFvxBYefVWo2mVqZaSXXuhkG7p7lj/W99+3vEzC3OsQaCqawGHc6henChDcCgPY7Q0rvj38CAwEAAQ==
       connection-error-retry-attempts: 0
       initial-size: 1
       max-active: 200
@@ -144,7 +146,8 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
   redis:
-    host: 117.159.10.13
+    #host: 117.159.10.13
+    host: 192.168.0.206
     password: 
     port: 6379
     timeout: 3000
