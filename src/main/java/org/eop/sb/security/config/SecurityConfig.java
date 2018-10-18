@@ -1,5 +1,11 @@
 package org.eop.sb.security.config;
 
+import org.eop.sb.security.access.handler.JsonAccessDeniedHandler;
+import org.eop.sb.security.login.handler.JsonAuthenticationFailureHandler;
+import org.eop.sb.security.login.handler.JsonAuthenticationSuccessHandler;
+import org.eop.sb.security.logout.handler.JsonLogoutSuccessHandler;
+import org.eop.sb.security.password.FakePasswordEncoder;
+import org.eop.sb.security.service.FakeUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,12 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return null;
+		return new FakeUserDetailsService();
 	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return null;
+		return new FakePasswordEncoder();
 	}
 	
 	@Override
@@ -34,11 +40,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+				.mvcMatchers("/index").hasRole("Admin")
 				.antMatchers("/admin/**").hasRole("Admin")
 				.anyRequest().hasRole("User")
 			.and().formLogin()
-				.defaultSuccessUrl("")
-				.loginPage("")
-				.loginProcessingUrl("");
+				.loginPage("/login")
+				.loginProcessingUrl("/login-process")
+				.successHandler(new JsonAuthenticationSuccessHandler())
+				.failureHandler(new JsonAuthenticationFailureHandler())
+				.permitAll()
+			.and().logout()
+				.logoutUrl("/logout-process")
+				.logoutSuccessHandler(new JsonLogoutSuccessHandler())
+				.permitAll()
+			.and().exceptionHandling()
+				.accessDeniedHandler(new JsonAccessDeniedHandler());
 	}
 }

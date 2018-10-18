@@ -141,6 +141,7 @@ spring:
       cron:
         expression: ${sessionCleanupCron:0 0/2 * * * ?}
   thymeleaf:
+    cache: false
     encoding: UTF-8
     mode: HTML
     prefix: classpath:/templates/
