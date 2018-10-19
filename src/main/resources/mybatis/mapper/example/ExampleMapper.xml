@@ -5,4 +5,8 @@
 		insert into tb_example(id,name,age,birthday)
 		values(#{id},#{name},#{age},#{birthday});
 	</insert>
+	
+	<select id="selectExample" parameterType="long" resultType="example">
+		select * from tb_example where id = #{id};
+	</select>
 </mapper>

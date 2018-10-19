@@ -8,6 +8,8 @@ import org.eop.sb.security.password.FakePasswordEncoder;
 import org.eop.sb.security.service.FakeUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,6 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new FakePasswordEncoder();
 	}
 	
+	@Bean
+	public RoleHierarchy roleHierarchy() {
+		//从数据库中读出当前用户的角色层次字符串
+		String roleHierarchyString = "";
+		RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+		roleHierarchy.setHierarchy(roleHierarchyString);
+		return roleHierarchy;
+	}
+	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.debug(true)
@@ -39,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		//从数据库中读出整个应用的角色/权限对应关系
 		http.authorizeRequests()
 				.mvcMatchers("/index").hasRole("Admin")
 				.antMatchers("/admin/**").hasRole("Admin")
