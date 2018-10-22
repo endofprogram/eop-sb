@@ -1,5 +1,10 @@
 package org.eop.sb.security.config;
 
+import java.util.Arrays;
+
+import org.eop.sb.security.access.decision.CompositeAccessDecisionManager;
+import org.eop.sb.security.access.decision.RoleAccessDecisionVoter;
+import org.eop.sb.security.access.decision.UriAccessDecisionVoter;
 import org.eop.sb.security.access.handler.JsonAccessDeniedHandler;
 import org.eop.sb.security.login.handler.JsonAuthenticationFailureHandler;
 import org.eop.sb.security.login.handler.JsonAuthenticationSuccessHandler;
@@ -50,11 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//从数据库中读出整个应用的角色/权限对应关系
 		http.authorizeRequests()
-				.mvcMatchers("/index").hasRole("Admin")
-				.antMatchers("/admin/**").hasRole("Admin")
-				.anyRequest().hasRole("User")
+			.accessDecisionManager(new CompositeAccessDecisionManager(
+					Arrays.asList(new RoleAccessDecisionVoter(), new UriAccessDecisionVoter())))
+			.anyRequest()
+				.authenticated()
 			.and().formLogin()
 				.loginPage("/login")
 				.loginProcessingUrl("/login-process")

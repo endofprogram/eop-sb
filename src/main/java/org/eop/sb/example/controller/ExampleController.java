@@ -1,9 +1,13 @@
 package org.eop.sb.example.controller;
 
 import java.util.Date;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.eop.common.http.invoker.IHttpInvoker;
 import org.eop.common.idgene.IdGenerator;
+import org.eop.common.map.MapBuilder;
 import org.eop.sb.example.bean.Example;
 import org.eop.sb.example.service.IExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +79,20 @@ public class ExampleController {
 		return new Date() + "<br />"
 				+ httpcomponentsHttpInvoker + "<br />"
 				+ okhttp3HttpInvoker + "<br />";
+	}
+	
+	@GetMapping(path = "/pathes")
+	public Map<String, Object> pathes(HttpServletRequest request) {
+		MapBuilder mb = new MapBuilder();
+		mb.kv("Scheme", request.getScheme())
+			.kv("ServerName", request.getServerName())
+			.kv("ServerPort", request.getServerPort())
+			.kv("ContextPath", request.getContextPath())
+			.kv("ServletPath", request.getServletPath())
+			.kv("PathInfo", request.getPathInfo())
+			.kv("QueryString", request.getQueryString())
+			.kv("RequestURI", request.getRequestURI())
+			.kv("RequestURL", request.getRequestURL());
+		return mb.toMap();
 	}
 }
