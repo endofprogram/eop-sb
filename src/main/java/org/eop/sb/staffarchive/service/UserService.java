@@ -1,4 +1,4 @@
-package org.eop.sb.accesscontrol.service;
+package org.eop.sb.staffarchive.service;
 
 /**
  * @author lixinjie

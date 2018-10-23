@@ -10,6 +10,11 @@
 	
 	<typeAliases>
 		<package name="org.eop.sb.accesscontrol.bean"/>
+		<package name="org.eop.sb.commonbase.bean"/>
+		<package name="org.eop.sb.staffarchive.bean"/>
+		<package name="org.eop.sb.prodclass.bean"/>
+		<package name="org.eop.sb.skilltrain.bean"/>
+		<package name="org.eop.sb.statsreport.bean"/>
 		<package name="org.eop.sb.example.bean"/>
 	</typeAliases>
 	

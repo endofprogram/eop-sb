@@ -1,6 +1,6 @@
-package org.eop.sb.accesscontrol.service.impl;
+package org.eop.sb.staffarchive.service.impl;
 
-import org.eop.sb.accesscontrol.service.UserService;
+import org.eop.sb.staffarchive.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**
