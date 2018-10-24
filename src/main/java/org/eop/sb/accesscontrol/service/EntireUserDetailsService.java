@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eop.sb.accesscontrol.bean.Auth;
 import org.eop.sb.accesscontrol.bean.Role;
+import org.eop.sb.accesscontrol.bean.RoleHier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -16,6 +17,8 @@ public interface EntireUserDetailsService extends UserDetailsService {
 	UserDetails selectUserDetailsByUsername(String username);
 	
 	List<Role> selectRolesByUserId(Long userId);
+	
+	List<RoleHier> selectAllRoleHiers();
 	
 	List<Role> selectRolesByIds(Long[] ids);
 	

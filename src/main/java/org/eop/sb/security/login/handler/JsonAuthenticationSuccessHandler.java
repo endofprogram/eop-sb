@@ -36,7 +36,16 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		
 		clearAuthenticationAttributes(request);
 		
+		saveEntireUserDetailsToSession(request, authentication);
+		
 		writeJsonToResponse(response);
+	}
+	
+	private void saveEntireUserDetailsToSession(HttpServletRequest request, Authentication authentication) {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.setAttribute("EntireUserDetails", authentication.getPrincipal());
+		}
 	}
 	
 	/**

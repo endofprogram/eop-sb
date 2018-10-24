@@ -1,5 +1,6 @@
 package org.eop.sb.accesscontrol.bean;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -31,6 +32,26 @@ public class EntireUserDetails implements UserDetails {
 	private List<Role> reachRoles;
 	private List<Auth> auths;
 	private Set<GrantedAuthority> authorities;
+	private String directRoleCodes;
+	private String directRoleNames;
+	private String reachRoleCodes;
+	private String reachRoleNames;
+	private List<Role> allRoles;
+	private String allRoleCodes;
+	private String allRoleNames;
+	private Long[] allRoleIds;
+	
+	public void basicInit() {
+		getAuthorities();
+		getDirectRoleCodes();
+		getDirectRoleNames();
+		getReachRoleCodes();
+		getReachRoleNames();
+		getAllRoles();
+		getAllRoleCodes();
+		getAllRoleNames();
+		getAllRoleIds();
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -40,13 +61,15 @@ public class EntireUserDetails implements UserDetails {
 		
 		authorities = new HashSet<>(directRoles.size() + reachRoles.size() + auths.size());
 		for (Role role : directRoles) {
-			authorities.add(new RoleGrantedAuthority(role.toString()));
+			authorities.add(new RoleGrantedAuthority(role.getRoleCode()));
 		}
 		for (Role role : reachRoles) {
-			authorities.add(new RoleGrantedAuthority(role.toString()));
+			authorities.add(new RoleGrantedAuthority(role.getRoleCode()));
 		}
 		for (Auth auth : auths) {
-			authorities.add(new UriGrantedAuthority(auth.toString()));
+			if (auth.getAuthUrl().trim().length() > 1) {
+				authorities.add(new UriGrantedAuthority(auth.getAuthUrl().trim()));
+			}
 		}
 		return authorities;
 	}
@@ -154,5 +177,108 @@ public class EntireUserDetails implements UserDetails {
 		this.password = password;
 	}
 
-	
+	public String getDirectRoleCodes() {
+		if (directRoleCodes == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : directRoles) {
+				sb.append(role.getRoleCode()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			directRoleCodes = sb.toString();
+		}
+		return directRoleCodes;
+	}
+
+	public String getDirectRoleNames() {
+		if (directRoleNames == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : directRoles) {
+				sb.append(role.getRoleName()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			directRoleNames = sb.toString();
+		}
+		return directRoleNames;
+	}
+
+	public String getReachRoleCodes() {
+		if (reachRoleCodes == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : reachRoles) {
+				sb.append(role.getRoleCode()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			reachRoleCodes = sb.toString();
+		}
+		return reachRoleCodes;
+	}
+
+	public String getReachRoleNames() {
+		if (reachRoleNames == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : reachRoles) {
+				sb.append(role.getRoleName()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			reachRoleNames = sb.toString();
+		}
+		return reachRoleNames;
+	}
+
+	public List<Role> getAllRoles() {
+		if (allRoles == null) {
+			allRoles = new ArrayList<>(directRoles.size() + reachRoles.size());
+			allRoles.addAll(directRoles);
+			allRoles.addAll(reachRoles);
+		}
+		return allRoles;
+	}
+
+	public String getAllRoleCodes() {
+		if (allRoleCodes == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : getAllRoles()) {
+				sb.append(role.getRoleCode()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			allRoleCodes = sb.toString();
+		}
+		return allRoleCodes;
+	}
+
+	public String getAllRoleNames() {
+		if (allRoleNames == null) {
+			StringBuilder sb = new StringBuilder();
+			for (Role role : getAllRoles()) {
+				sb.append(role.getRoleName()).append(",");
+			}
+			if (sb.length() > 0) {
+				sb.setLength(sb.length() - 1);
+			}
+			allRoleNames = sb.toString();
+		}
+		return allRoleNames;
+	}
+
+	public Long[] getAllRoleIds() {
+		if (allRoleIds == null) {
+			List<Long> ids = new ArrayList<>(getAllRoles().size());
+			for (Role role : getAllRoles()) {
+				ids.add(role.getId());
+			}
+			allRoleIds = ids.toArray(new Long[ids.size()]);
+		}
+		return allRoleIds;
+	}
+
 }
