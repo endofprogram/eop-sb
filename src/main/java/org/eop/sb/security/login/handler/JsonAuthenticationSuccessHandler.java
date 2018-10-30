@@ -54,6 +54,7 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	protected void writeJsonToResponse(HttpServletResponse response) throws IOException {
 		RestResult result = new RestResult(ResultCode.Success.getCode(), ResultCode.Success.getDesc());
 		String json = Jackson.getObjectMapper().writeValueAsString(result);
+		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write(json);
 	}
 

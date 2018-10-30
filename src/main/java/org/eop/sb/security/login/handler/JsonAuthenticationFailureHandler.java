@@ -36,6 +36,7 @@ public class JsonAuthenticationFailureHandler implements AuthenticationFailureHa
 	protected void writeJsonToResponse(HttpServletResponse response) throws IOException {
 		RestResult result = new RestResult(ResultCode.Failure.getCode(), ResultCode.Failure.getDesc());
 		String json = Jackson.getObjectMapper().writeValueAsString(result);
+		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write(json);
 	}
 
