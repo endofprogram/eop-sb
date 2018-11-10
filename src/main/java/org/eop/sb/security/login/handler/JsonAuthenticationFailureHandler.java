@@ -7,14 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.eop.common.jackson.Jackson;
-import org.eop.common.result.RestResult;
-import org.eop.common.result.ResultCode;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 /**
+ * <p>当登陆失败时执行，返回json
  * @author lixinjie
  * @since 2018-10-18
  */
@@ -34,8 +32,7 @@ public class JsonAuthenticationFailureHandler implements AuthenticationFailureHa
 	 * write login failure json to client
 	 */
 	protected void writeJsonToResponse(HttpServletResponse response) throws IOException {
-		RestResult result = new RestResult(ResultCode.Failure.getCode(), ResultCode.Failure.getDesc());
-		String json = Jackson.getObjectMapper().writeValueAsString(result);
+		String json = "{\"code\":-1,\"desc\":\"失败\"}";
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write(json);
 	}

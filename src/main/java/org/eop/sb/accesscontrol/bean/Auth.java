@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * <p>权限（菜单）
  * @author lixinjie
  * @since 2018-10-21
  */

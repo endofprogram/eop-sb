@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.FilterInvocation;
 
 /**
+ * <p>基于uri的投票者
  * @author lixinjie
  * @since 2018-10-22
  */
@@ -18,9 +19,11 @@ public class UriAccessDecisionVoter implements AccessDecisionVoter<FilterInvocat
 	public int vote(Authentication authentication, FilterInvocation fi,
 			Collection<ConfigAttribute> attributes) {
 		String uri = getRequestUri(fi);
+		//检查当前用户是否具有该uri，有则通过
 		if (authentication.getAuthorities().contains(new UriGrantedAuthority(uri))) {
 			return AccessDecisionVoter.ACCESS_GRANTED;
 		}
+		//拒绝
 		return AccessDecisionVoter.ACCESS_DENIED;
 	}
 	

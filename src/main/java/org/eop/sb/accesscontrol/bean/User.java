@@ -14,10 +14,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
+ * <p>用户
  * @author lixinjie
  * @since 2018-10-23
  */
-public class EntireUserDetails implements UserDetails {
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 850473871933079622L;
 

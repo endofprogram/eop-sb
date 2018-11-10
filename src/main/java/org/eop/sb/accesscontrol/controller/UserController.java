@@ -1,4 +1,4 @@
-package org.eop.sb.staffarchive.controller;
+package org.eop.sb.accesscontrol.controller;
 
 import org.springframework.stereotype.Controller;
 

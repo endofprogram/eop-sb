@@ -79,8 +79,8 @@ pagehelper:
 spring:
   datasource:
     druid:
-      #url: jdbc:mysql://117.159.10.13:3306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
-      url: jdbc:mysql://192.168.0.206:3306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      url: jdbc:mysql://117.159.10.:23306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      #url: jdbc:mysql://192.168.0.206:3306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
       username: user_mgt
       password: Wcgw21TmhSeOqG//KtalEpUoSmIF4QtNnit7tHWLM/GYvyPx/KFaFe0B0qkSg6CrNSqzns7Fo1fbEcPItPhiPQ==
       driver-class-name: com.mysql.jdbc.Driver
@@ -147,10 +147,10 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
   redis:
-    #host: 117.159.10.13
-    host: 192.168.0.206
+    host: 117.159.10.
+    #host: 192.168.0.206
     password: 
-    port: 6379
+    port: 26379
     timeout: 3000
     pool:
       max-active: 10000

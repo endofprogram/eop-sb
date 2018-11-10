@@ -4,17 +4,16 @@ import java.util.Arrays;
 
 import org.eop.sb.security.access.decision.CompositeAccessDecisionManager;
 import org.eop.sb.security.access.decision.RoleAccessDecisionVoter;
+import org.eop.sb.security.access.decision.SupportAccessDecisionVoter;
 import org.eop.sb.security.access.decision.UriAccessDecisionVoter;
 import org.eop.sb.security.access.handler.JsonAccessDeniedHandler;
 import org.eop.sb.security.login.handler.JsonAuthenticationFailureHandler;
 import org.eop.sb.security.login.handler.JsonAuthenticationSuccessHandler;
 import org.eop.sb.security.logout.handler.JsonLogoutSuccessHandler;
-import org.eop.sb.security.password.FakePasswordEncoder;
-import org.eop.sb.security.service.FakeUserDetailsService;
+import org.eop.sb.security.user.password.FakePasswordEncoder;
+import org.eop.sb.security.user.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,21 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return new FakeUserDetailsService();
+		return new UserDetailsServiceImpl();
 	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new FakePasswordEncoder();
-	}
-	
-	@Bean
-	public RoleHierarchy roleHierarchy() {
-		//从数据库中读出当前用户的角色层次字符串
-		String roleHierarchyString = "";
-		RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-		roleHierarchy.setHierarchy(roleHierarchyString);
-		return roleHierarchy;
 	}
 	
 	@Override
@@ -57,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.accessDecisionManager(new CompositeAccessDecisionManager(
-					Arrays.asList(new RoleAccessDecisionVoter(), new UriAccessDecisionVoter())))
+					Arrays.asList(new SupportAccessDecisionVoter(),
+							new RoleAccessDecisionVoter(), new UriAccessDecisionVoter())))
 			.anyRequest()
 				.authenticated()
 			.and().formLogin()

@@ -3,11 +3,10 @@ package org.eop.sb.staffarchive.bean;
 import java.util.Date;
 
 /**
- * 员工
  * @author lixinjie
- * @since 2018-10-21
+ * @since 2018-11-10
  */
-public class User {
+public class Staff {
 
 	private Long id;
 	private String username;

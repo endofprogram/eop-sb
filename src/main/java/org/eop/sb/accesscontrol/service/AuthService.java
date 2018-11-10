@@ -25,4 +25,6 @@ public interface AuthService {
 	List<Auth> selectMenus(Long[] roleIds);
 	
 	List<Auth> selectAuths(Long[] roleIds);
+	
+	List<Auth> selectAuthsByRoleIds(Long[] ids);
 }

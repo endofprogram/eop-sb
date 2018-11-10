@@ -2,9 +2,9 @@ package org.eop.sb.security.access.authority;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
-import org.springframework.util.Assert;
 
 /**
+ * <p>表示被授予的权限是uri
  * @author lixinjie
  * @since 2018-10-22
  */
@@ -15,7 +15,6 @@ public class UriGrantedAuthority implements GrantedAuthority {
 	private final String uri;
 
 	public UriGrantedAuthority(String uri) {
-		Assert.hasText(uri, "A granted authority textual representation is required");
 		this.uri = uri;
 	}
 

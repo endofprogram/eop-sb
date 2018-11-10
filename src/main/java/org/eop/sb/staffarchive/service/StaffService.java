@@ -2,8 +2,8 @@ package org.eop.sb.staffarchive.service;
 
 /**
  * @author lixinjie
- * @since 2018-10-21
+ * @since 2018-11-10
  */
-public interface UserService {
+public interface StaffService {
 
 }

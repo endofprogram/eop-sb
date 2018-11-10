@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.FilterInvocation;
 
 /**
+ * <p>管理多个投票者，并做出决定
  * @author lixinjie
  * @since 2018-10-22
  */

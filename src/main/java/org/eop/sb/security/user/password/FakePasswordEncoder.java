@@ -1,8 +1,9 @@
-package org.eop.sb.security.password;
+package org.eop.sb.security.user.password;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
+ * <p>用于密码加密和比对
  * @author lixinjie
  * @since 2018-10-18
  */

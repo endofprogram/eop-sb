@@ -1,10 +1,11 @@
 package org.eop.sb.security.access.authority;
 
+import org.eop.sb.security.metadata.attribute.RoleConfigAttribute;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
-import org.springframework.util.Assert;
 
 /**
+ * <p>表示被授予的权限是角色
  * @author lixinjie
  * @since 2018-10-22
  */
@@ -15,7 +16,6 @@ public class RoleGrantedAuthority implements GrantedAuthority {
 	private final String role;
 
 	public RoleGrantedAuthority(String role) {
-		Assert.hasText(role, "A granted authority textual representation is required");
 		this.role = role;
 	}
 
@@ -27,20 +27,24 @@ public class RoleGrantedAuthority implements GrantedAuthority {
 		if (this == obj) {
 			return true;
 		}
-
+		
 		if (obj instanceof RoleGrantedAuthority) {
 			return role.equals(((RoleGrantedAuthority)obj).role);
 		}
-
+		
+		if (obj instanceof RoleConfigAttribute) {
+			return role.equals(((RoleConfigAttribute)obj).getAttribute());
+		}
+		
 		return false;
 	}
 
 	public int hashCode() {
-		return this.role.hashCode();
+		return role.hashCode();
 	}
 
 	public String toString() {
-		return this.role;
+		return role;
 	}
 
 }

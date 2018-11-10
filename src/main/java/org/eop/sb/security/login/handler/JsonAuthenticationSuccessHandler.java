@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.eop.common.jackson.Jackson;
-import org.eop.common.result.RestResult;
-import org.eop.common.result.ResultCode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -18,6 +15,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 /**
+ * <p>当登陆成功时执行，返回json
  * @author lixinjie
  * @since 2018-10-18
  */
@@ -52,8 +50,7 @@ public class JsonAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	 * write login success json to client
 	 */
 	protected void writeJsonToResponse(HttpServletResponse response) throws IOException {
-		RestResult result = new RestResult(ResultCode.Success.getCode(), ResultCode.Success.getDesc());
-		String json = Jackson.getObjectMapper().writeValueAsString(result);
+		String json = "{\"code\":0,\"desc\":\"成功\"}";
 		response.setContentType("application/json;charset=UTF-8");
 		response.getWriter().write(json);
 	}

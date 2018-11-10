@@ -3,6 +3,7 @@ package org.eop.sb.accesscontrol.bean;
 import java.util.Date;
 
 /**
+ * <p>角色权限（菜单）关联
  * @author lixinjie
  * @since 2018-10-21
  */

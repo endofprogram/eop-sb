@@ -1,13 +1,13 @@
 package org.eop.sb.staffarchive.service.impl;
 
-import org.eop.sb.staffarchive.service.UserService;
+import org.eop.sb.staffarchive.service.StaffService;
 import org.springframework.stereotype.Service;
 
 /**
  * @author lixinjie
- * @since 2018-10-21
+ * @since 2018-11-10
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class StaffServiceImpl implements StaffService {
 
 }

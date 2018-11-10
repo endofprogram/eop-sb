@@ -3,6 +3,7 @@ package org.eop.sb.accesscontrol.bean;
 import java.util.Date;
 
 /**
+ * <p>用户角色关联
  * @author lixinjie
  * @since 2018-10-21
  */
