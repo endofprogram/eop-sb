@@ -3,7 +3,7 @@ package org.eop.sb.commonbase.bean;
 import java.util.Date;
 
 /**
- * 业务方
+ * 运营商
  * @author lixinjie
  * @since 2018-10-23
  */
