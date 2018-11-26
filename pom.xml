@@ -88,11 +88,11 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>${pagehelper-spring-boot-starter}</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.alibaba.boot</groupId>
 			<artifactId>dubbo-spring-boot-starter</artifactId>
 			<version>${dubbo-spring-boot-starter}</version>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>org.eop</groupId>
 			<artifactId>eop-common</artifactId>
