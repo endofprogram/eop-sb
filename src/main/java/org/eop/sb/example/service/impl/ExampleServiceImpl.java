@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author lixinjie
  * @since 2018-09-03
  */
+@Transactional
 @Service
 public class ExampleServiceImpl implements IExampleService {
 

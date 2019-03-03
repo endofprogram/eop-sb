@@ -77,6 +77,8 @@ pagehelper:
 #    base-packages: org.eop.sb.**.dubbo.provider,org.eop.sb.**.dubbo.consumer
 
 spring:
+  aop:
+    proxy-target-class: false
   datasource:
     druid:
       url: jdbc:mysql://117.159.10.:23306/user_mgt_db?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
