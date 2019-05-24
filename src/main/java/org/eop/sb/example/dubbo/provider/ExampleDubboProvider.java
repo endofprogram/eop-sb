@@ -8,7 +8,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @author lixinjie
  * @since 2018-09-03
  */
-@Service(timeout = 60, retries = -1)
+@Service(timeout = 60000, retries = -1)
 public class ExampleDubboProvider implements IExampleDubbo {
 
 	@Override

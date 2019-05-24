@@ -12,7 +12,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 @Component
 public class ExampleDubboConsumer implements IExampleDubbo {
 
-	@Reference(timeout = 60, retries = -1, check = false)
+	@Reference(timeout = 60000, retries = -1, check = false)
 	private IExampleDubbo exampleDubbo;
 	
 	@Override
